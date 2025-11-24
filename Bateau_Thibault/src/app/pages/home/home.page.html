@@ -1,20 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+<ion-content>
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+     <section class="hero">
+      <div class="hero-content">
+
+        <h1 id="heroTitle">Découvrez Bateau Thibault</h1>
+        <p id="heroSubtitle">Une expérience marine unique</p>
+
+        <ion-buttons class="cta-buttons">
+          <ion-button class="cta-btn primary" data-page="boats" (click)="onGoToBateaux()">Nos Bateaux</ion-button> 
+          <ion-button class="cta-btn primary" data-page="products" (click)="onGoToProduits()">Produits Frais</ion-button> 
+          <ion-button class="cta-btn secondary" data-page="restaurants" (click)="onGoToRestaurants()">Restaurants</ion-button> 
+          <ion-button class="cta-btn secondary" data-page="recipes" (click)="onGoToRecettes()">Recettes</ion-button>
+        </ion-buttons>
+
+      </div>
+   </section>
   </div>
 </ion-content>

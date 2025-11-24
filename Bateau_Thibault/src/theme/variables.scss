@@ -1,2 +1,13 @@
 // For information on how to create your own theme, please refer to:
 // https://ionicframework.com/docs/theming/
+
+
+:root{
+    ion-header{
+        --ion-background-color: rgba(0, 31, 63, 0.95);;
+    }
+
+    :host{
+        --background: none !important;
+    }
+}

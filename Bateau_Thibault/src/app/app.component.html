@@ -1,3 +1,24 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+
+  <ion-header class="navbar">
+  <ion-toolbar class="navbar">
+    <ion-buttons slot="start">
+      <div class="logo-container">
+        <div class="logo-placeholder"><img src="/assets/img/logo.png" alt="logo"></div>
+        <span class="site-title">Bateau Thibault</span>
+      </div>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="onGoToHome()" class="nav-link" >Accueil</ion-button>
+      <ion-button (click)="onGoToBateaux()" class="nav-link">Bateaux</ion-button>
+      <ion-button (click)="onGoToProduits()" class="nav-link">Produits</ion-button>
+      <ion-button (click)="onGoToRestaurants()" class="nav-link">Restaurants</ion-button>
+      <ion-button (click)="onGoToRecettes()" class="nav-link">Recettes</ion-button>
+      <ion-button (click)="onGoToContact()" class="nav-link">Contact</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+  <ion-router-outlet class="allBody"></ion-router-outlet>
 </ion-app>
