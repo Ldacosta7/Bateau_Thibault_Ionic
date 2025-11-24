@@ -1,16 +1,42 @@
-
-.allBody{
-    margin-top: 4%;
+#container {
+  font-family: 'Raleway', sans-serif;
+  background: linear-gradient(180deg, #001f3f 0%, #002f4b 50%, #003d5c 100%) !important;
+  color: #fff;
+  height: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding-top: 4%;
 }
 
+.allBody{
+  margin-top: 4%;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
 .navbar{
-  background: rgba(0, 31, 63, 0.95);
+  //background: rgba(0, 31, 63, 0.95);
   backdrop-filter: blur(10px);
   z-index: 1000;
   align-items: center;
   box-shadow: 0 4px 20px rgba(28, 167, 236, 0.3);
   transition: all 0.3s ease;
   position: sticky;
+}
+
+#nav{
+    background: rgba(0, 31, 63, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(28, 167, 236, 0.3);
+  transition: all 0.3s ease;
+  position: fixed;
 }
 
 .logo-container {
@@ -77,3 +103,9 @@
   color: #1ca7ec;
   text-shadow: 0 0 10px rgba(28, 167, 236, 0.7);
 }
+
+ion-header{
+        --ion-background-color: rgba(0, 31, 63, 0.95) !important;
+    }
+
+    
