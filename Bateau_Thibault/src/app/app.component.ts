@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonApp, IonRouterOutlet, IonHeader, IonToolbar, IonButtons, IonButton } from '@ionic/angular/standalone';
+import { IonApp, IonRouterOutlet, IonHeader, IonToolbar, IonButtons, IonButton, IonMenuButton, IonMenu, IonContent, IonTitle } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
-  imports: [IonApp, IonRouterOutlet, IonHeader, IonToolbar, IonButtons, IonButton],
+  imports: [IonApp, IonRouterOutlet, IonHeader, IonToolbar, IonButtons, IonButton, IonMenuButton, IonMenu, IonContent, IonTitle],
 })
 export class AppComponent {
   constructor(private router: Router) {}

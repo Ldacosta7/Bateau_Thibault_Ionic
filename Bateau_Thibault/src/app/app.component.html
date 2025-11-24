@@ -1,6 +1,22 @@
 <ion-app>
 
-  <ion-header  id="nav">
+<ion-menu contentId="mainContent" style="margin-top: 12%;">
+
+  <ion-content class="menu">
+    <br>
+    <ion-buttons class="cta-buttons">
+      <ion-button (click)="onGoToHome()" class="cta-btn primary" data-page="accueil" >Accueil</ion-button>
+      <ion-button (click)="onGoToBateaux()" class="cta-btn primary">Bateaux</ion-button>
+      <ion-button (click)="onGoToProduits()" class="cta-btn primary">Produits</ion-button>
+      <ion-button (click)="onGoToRestaurants()" class="cta-btn primary">Restaurants</ion-button>
+      <ion-button (click)="onGoToRecettes()" class="cta-btn primary ">Recettes</ion-button>
+      <ion-button (click)="onGoToContact()" class="cta-btn primary">Contact</ion-button><br>
+    </ion-buttons>
+    
+  </ion-content>
+</ion-menu>
+
+<ion-header  id="nav">
   <ion-toolbar id="nav">
     <ion-buttons slot="start">
       <div class="logo-container">
@@ -10,18 +26,14 @@
     </ion-buttons>
 
     <ion-buttons slot="end">
-      <ion-button (click)="onGoToHome()" class="nav-link" >Accueil</ion-button>
-      <ion-button (click)="onGoToBateaux()" class="nav-link">Bateaux</ion-button>
-      <ion-button (click)="onGoToProduits()" class="nav-link">Produits</ion-button>
-      <ion-button (click)="onGoToRestaurants()" class="nav-link">Restaurants</ion-button>
-      <ion-button (click)="onGoToRecettes()" class="nav-link">Recettes</ion-button>
-      <ion-button (click)="onGoToContact()" class="nav-link">Contact</ion-button>
+              <ion-menu-button autoHide="false" class="hamburger-btn"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+
 <div id="container">
-  <ion-router-outlet class="allBody"></ion-router-outlet>
+  <ion-router-outlet class="allBody" id="mainContent"></ion-router-outlet>
 
 </div>
 
