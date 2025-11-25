@@ -1,7 +1,8 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonButton, IonButtons } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonButton, IonButtons, IonModal, IonItem, ModalController } from '@ionic/angular/standalone';
+import { BoatCardComponent } from 'src/app/composants/boat-card/boat-card.component';
 
 
 
@@ -11,14 +12,15 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonButton, IonBut
   templateUrl: './bateau.page.html',
   styleUrls: ['./bateau.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonButton, IonButtons]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonButton, IonButtons, IonModal, IonItem]
 })
 
 export class BateauPage{
   boats: Array<any> = [];
+  modalBoat: any = { id: 0, name: 0, icon: 0, year: 0, capacity: 0, zone: 0, description: 0};
 
 
-  constructor() {  
+  constructor(private modalBateau: ModalController) {  
       this.boats = [
       {
         id: 1,
@@ -59,32 +61,18 @@ export class BateauPage{
     ];
   }
 
-  showBoatDetail(id: number): void {
-    const boat = this.boats.find((b) => b.id === id);
-    console.log(boat);
-    console.log(id);
-    if (!boat) {
-      console.error(`Boat with id ${id} not found`);
-      return;
-    }
-
-    this.showModal(`
-    <h2>${boat.icon} ${boat.name}</h2>
-    <div class="modal-section">
-      <h4>Description</h4>
-      <p>${boat.description}</p>
-    </div>
-    <div class="modal-section">
-      <h4>Caractéristiques</h4>
-      <ul>
-        <li>Année de construction : ${boat.year}</li>
-        <li>Capacité : ${boat.capacity}</li>
-        <li>Zone de pêche : ${boat.zone}</li>
-      </ul>
-    </div>
-  `);
+  close(){
+    this.modalBateau.dismiss(null, 'cancel');
   }
 
-  showModal(content: string): void {
-    const test :any ="";}
+  async openModal(boat : any){
+    const modal = await this.modalBateau.create({
+      component : BoatCardComponent,
+      componentProps : {'bateau' : boat}
+    });
+    modal.present();
+
+    this.modalBoat = boat;
+    console.log(this.modalBoat)
+  }
 }

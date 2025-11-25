@@ -1,3 +1,24 @@
-<p>
-  boat-card works!
-</p>
+<ion-header id="nav" >
+  <ion-toolbar>
+    <ion-title class="title">{{bateau.name}}</ion-title>
+
+    <ion-buttons slot="end">
+              <ion-button (click)="closeModal()">close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding" id="container">
+  <div class="modal-section">{{bateau.icon}}</div>
+  <h4>{{bateau.description}}</h4>
+  <div class="card-detail">
+    <h4>Caractéristiques</h4>
+    <ul>
+      <li>Année de construction : {{bateau.year}}</li>
+      <li>Capacité : {{bateau.capacity}}</li>
+      <li>Zone de pêche : {{bateau.zone}}</li>
+    </ul>
+  </div>
+
+</ion-content>
+
+
