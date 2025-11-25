@@ -1,13 +1,31 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>bateau</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">bateau</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div id="boats" class="page">
+    <section class="section">
+      <h2 class="section-title">⚓ Notre Flotte</h2>
+      <ion-card class="cards-grid" id="boatsGrid">
+      @for (boat of boats; track boat.id){
+        <div class="card" (click)="showBoatDetail(boat.id)">
+            <div class="card-icon">{{boat.icon}}</div>
+            <h3>{{boat.name}}</h3>
+            <p>{{boat.description}}</p>
+            <div class="card-detail">
+              <span>📅 {{boat.year}}</span>
+              <span>👥 {{boat.capacity}}</span>
+            </div>
+            <div class="card-detail">
+              <span>🌍 {{boat.zone}}</span>
+            </div>
+            <ion-buttons class="cta-btn">
+              <ion-button class="card-btn" (click)="showBoatDetail(boat.id)">Voir plus</ion-button>
+            </ion-buttons>
+          </div>
+        } @empty {
+          <p>Aucun bateau disponible pour le moment.</p>
+        }
+      </ion-card>
+    </section>
+  </div>
+
 </ion-content>

@@ -6,6 +6,7 @@ import { IonApp, IonRouterOutlet, IonHeader, IonToolbar, IonButtons, IonButton }
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
+  
   imports: [IonApp, IonRouterOutlet, IonHeader, IonToolbar, IonButtons, IonButton],
 })
 export class AppComponent {
