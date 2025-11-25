@@ -1,0 +1,42 @@
+{
+    "produitsTotaux": {
+        "values": [
+            0
+        ]
+    },
+    "produitsEnVenteTotaux": {
+        "values": [
+            0
+        ]
+    },
+    "nbreFabricateurs": {
+        "values": [
+            0
+        ]
+    },
+    "magasinsTotaux": {
+        "values": [
+            0
+        ]
+    },
+    "nbreArticlesCategories": {
+        "values": [
+            []
+        ]
+    },
+    "nbreArticlesMagasin": {
+        "values": [
+            []
+        ]
+    },
+    "listeMagasinsProduitsMensuel": {
+        "values": [
+            []
+        ]
+    },
+    "sankeeyChart": {
+        "values": [
+            []
+        ]
+    }
+}
