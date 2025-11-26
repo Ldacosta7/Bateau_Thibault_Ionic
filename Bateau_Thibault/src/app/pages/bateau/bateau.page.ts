@@ -17,7 +17,6 @@ import { BoatCardComponent } from 'src/app/composants/boat-card/boat-card.compon
 
 export class BateauPage{
   boats: Array<any> = [];
-  modalBoat: any = { id: 0, name: 0, icon: 0, year: 0, capacity: 0, zone: 0, description: 0};
 
 
   constructor(private modalBateau: ModalController) {  
@@ -61,18 +60,13 @@ export class BateauPage{
     ];
   }
 
-  close(){
-    this.modalBateau.dismiss(null, 'cancel');
-  }
-
   async openModal(boat : any){
     const modal = await this.modalBateau.create({
       component : BoatCardComponent,
       componentProps : {'bateau' : boat}
     });
     modal.present();
-
-    this.modalBoat = boat;
-    console.log(this.modalBoat)
   }
+
+  
 }
