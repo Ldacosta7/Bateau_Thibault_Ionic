@@ -28,7 +28,7 @@ export class BateauPage{
         year: '2018',
         capacity: '12 personnes',
         zone: 'Atlantique Nord',
-        description: 'Chalutier moderne équipé pour la p��che hauturière. Doté des dernières technologies de navigation et de détection.'
+        description: 'Chalutier moderne équipé pour la pêche hauturière. Doté des dernières technologies de navigation et de détection.'
       },
       {
         id: 2,
@@ -59,7 +59,6 @@ export class BateauPage{
       }
     ];
   }
-
   async openModal(boat : any){
     const modal = await this.modalBateau.create({
       component : BoatCardComponent,
@@ -67,6 +66,4 @@ export class BateauPage{
     });
     modal.present();
   }
-
-  
 }
