@@ -1,13 +1,29 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>restaurants</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">restaurants</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <div id="container" class="page">
+    <section class="section">
+      <h2 class="section-title">⚓ Nos Restaurants</h2>
+      <ion-card class="cards-grid" id="boatsGrid">
+      @for (resto of restaurants; track resto.id){
+
+        <div class="card" id="openModalBateau">
+            <div class="card-icon">{{resto.icon}}</div>
+            <h3>{{resto.name}}</h3>
+            <p>Spécialité: {{resto.specialty}}</p>
+            <div class="card-detail">
+              <span>Description: {{resto.description}}</span>
+            </div>
+            <div class="card-detail">
+              <span>Localisation: {{resto.location}}</span>
+              <span>Contact: {{resto.contact}}</span>
+            </div>
+          </div>
+
+        } @empty {
+          <p>Aucun produits disponible pour le moment.</p>
+        }
+      </ion-card>
+    </section>
+  </div>
+
 </ion-content>
