@@ -33,7 +33,8 @@ export class AppComponent {
 
   async openModal(){
     const modal = await this.modalCart.create({
-      component : PanierCardComponent
+      component : PanierCardComponent,
+      componentProps : {Product : null}
     });
     modal.present();
   }
