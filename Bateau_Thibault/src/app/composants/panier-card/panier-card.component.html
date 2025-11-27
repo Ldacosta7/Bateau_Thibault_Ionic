@@ -1,3 +1,58 @@
-<p>
-  panier-card works!
-</p>
+<ion-content class="cart-sidebar" id="cartSidebar" role="complementary">
+  <ion-header class="cart-header">
+    <ion-toolbar>
+      <ion-title>
+        <h2>Votre Panier</h2>
+        <ion-buttons class="modal-close">
+          <ion-button (click)="closeModal()">
+            x
+          </ion-button>
+        </ion-buttons>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-content id="cartItemsContainer" class="cart-items">
+      @if (cart.products.length === 0 ) {
+      <div class="empty-state">
+        <div class="empty-state-icon">
+          🛒
+        </div>
+        <p>Votre panier est vide</p>
+      </div>
+      }@else{
+        @for(product of cart.products; track cart.products){
+        <div class="cart-item">
+          <div class="cart-item-header">
+            <div class="cart-item-name">{{product.productName}} ({{product.icon}})</div>
+            <button class="cart-item-remove">Supprimer</button>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem;">
+            <div style="color: #b8e6ff;">Quantité: {{product.quantity}}</div>
+            <div class="cart-item-price">{{(product.productPrice * product.quantity).toFixed(2)}} €</div>
+          </div>
+        </div>
+        }
+      }
+    </ion-card-content>
+    <div class="relay-section">
+      <h3>Choisir un point relais</h3>
+      <div id="relayPoints">
+        @for (relay of relayPoints; track relay.id){
+        <div class="relay-option" (click)="selectRelay(relay)">
+          <div class="relay-option-name">{{relay.name}}</div>
+          <div class="relay-option-address">{{relay.address}}</div>
+        </div>
+        }
+      </div>
+    </div>
+    <div class="cart-total">
+      <div class="cart-total-row"><span>Total:</span> <span id="cartTotal">0.00 €</span>
+      </div>
+    </div>
+    <ion-buttons class="cta-buttons">
+      <ion-button class="cta-btn btn btn-primary" style="width: 100%;" id="checkoutBtn">Valider la commande</ion-button>
+    </ion-buttons>
+  </ion-card>
+</ion-content>

@@ -1,13 +1,32 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>produits</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">produits</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <div id="container" class="page">
+    <section class="section">
+      <h2 class="section-title">⚓ Nos Produits</h2>
+      <ion-card class="cards-grid" id="boatsGrid">
+      @for (product of products; track product.id){
+
+        <div class="card" id="openModalBateau">
+            <div class="card-icon">{{product.icon}}</div>
+            <h3>{{product.productName}}</h3>
+            <p>Saison: {{product.season}}</p>
+            <div class="card-detail">
+              <span>Date expiration: {{product.expirationDate}}</span>
+              <span>Stock: {{product.stock}}</span>
+            </div>
+            <div class="card-detail">
+              <span>Promo: {{product.promo}}</span>
+              <span>Prix: {{product.productPrice}}</span>
+            </div>
+            <ion-buttons class="cta-btn">
+              <ion-button class="card-btn" (click)="addToCart(product)">Ajouter au panier</ion-button>
+            </ion-buttons>
+          </div>
+        } @empty {
+          <p>Aucun produits disponible pour le moment.</p>
+        }
+      </ion-card>
+    </section>
+  </div>
+
 </ion-content>

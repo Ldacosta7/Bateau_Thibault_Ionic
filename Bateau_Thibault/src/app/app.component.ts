@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonApp, IonRouterOutlet, IonHeader, IonToolbar, IonButtons, IonButton, IonMenuButton, IonMenu, IonContent, IonTitle } from '@ionic/angular/standalone';
+import { IonApp, IonRouterOutlet, IonHeader, IonToolbar, IonButtons, IonButton, IonMenuButton, IonMenu, IonContent, IonTitle, ModalController } from '@ionic/angular/standalone';
+import { PanierCardComponent } from './composants/panier-card/panier-card.component';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,8 @@ import { IonApp, IonRouterOutlet, IonHeader, IonToolbar, IonButtons, IonButton, 
   imports: [IonApp, IonRouterOutlet, IonHeader, IonToolbar, IonButtons, IonButton, IonMenuButton, IonMenu, IonContent, IonTitle],
 })
 export class AppComponent {
-  constructor(private router: Router) {}
+  cart : Array<any> = [];
+  constructor(private router: Router, private modalCart: ModalController) {}
 
     onGoToHome()
   { this.router.navigate(['/home']) }
@@ -24,8 +26,16 @@ export class AppComponent {
   { this.router.navigate(['/restaurants']) }
 
   onGoToRecettes()
-  { this.router.navigate(['recettes']) }
+  { this.router.navigate(['/recettes']) }
 
   onGoToContact()
   { this.router.navigate(['/contact']) }
+
+  async openModal(){
+    const modal = await this.modalCart.create({
+      component : PanierCardComponent
+    });
+    modal.present();
+  }
+  
 }

@@ -2,19 +2,23 @@
 // https://ionicframework.com/docs/theming/
 
 :root{
-        ion-header{
+    ion-header{
         --background: transparent !important;
     }
 
-ion-toolbar{
-          --background: transparent !important;
+    ion-toolbar{
+        --background: transparent !important;
 
-}
+    }
 
-ion-content{
-            --background: transparent !important;
+    ion-content{
+        --background: transparent !important;
 
-}
+    }
+
+    ion-card{
+        --background : transparent !important;
+    }
 
 }
 
