@@ -22,18 +22,21 @@
         <p>Votre panier est vide</p>
       </div>
       }@else{
-        @for(product of cart.products; track cart.products){
-        <div class="cart-item">
-          <div class="cart-item-header">
-            <div class="cart-item-name">{{product.productName}} ({{product.icon}})</div>
-            <button class="cart-item-remove" (click)="removeProductFromCart(product)">Supprimer</button>
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem;">
-            <div style="color: #b8e6ff;">Quantité: {{product.quantity}}</div>
-            <div class="cart-item-price">{{(product.productPrice * product.quantity).toFixed(2)}} €</div>
-          </div>
+      @for(product of cart.products; track cart.products){
+      <div class="cart-item">
+        <div class="cart-item-header">
+          <div class="cart-item-name">{{product.productName}} ({{product.icon}})</div>
+          <button class="cart-item-remove" (click)="removeProductFromCart(product)">Supprimer</button>
         </div>
-        }
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem;">
+          <button class="quantity-btn minus" (click)="decreaseProductFromCart(product)">−</button>
+          <span class="quantity-value">{{product.quantity}}</span>
+          <button class="quantity-btn plus" (click)="addItemToCart(product)">+</button>
+          <div style="color: #b8e6ff;">Quantité: {{product.quantity}}</div>
+          <div class="cart-item-price">{{(product.productPrice * product.quantity).toFixed(2)}} €</div>
+        </div>
+      </div>
+      }
       }
     </ion-card-content>
     <div class="relay-section">

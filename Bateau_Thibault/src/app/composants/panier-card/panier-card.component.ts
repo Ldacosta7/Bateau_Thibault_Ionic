@@ -52,63 +52,89 @@ export class PanierCardComponent implements OnInit {
     ];
   }
 
+  //Gestion du modal
   ngOnInit() {
     if (this.product.productName != '') {
       this.addItemToCart(this.product);
     }
   }
-
   closeModal() {
     return this.modalCtrl.dismiss()
   }
 
+  // Gestion du panier
   addItemToCart(product: Product) {
-    this.cart.products.push(product);
-    this.cart.totalPrice += product.productPrice;
+    console.log("avant ajout",this.cart)
+    this.getProductsFromJson;
+    console.log("avant ajout test 2",this.cart)
+    if(this.checkExistingProduct(product) == false){
+      this.cart.products.push(product);
+    }
+    console.log("après ajout",this.cart);
+    this.updateTotalPrice();
+    console.log("après mise à jour du prix",this.cart)
     this.setCart();
+    console.log("après set cart",this.cart)
   }
 
   selectRelay(relay: any) {
     this.relayPoints.forEach(i => i.id === relay.id && (i.selected = true));
     this.actualRelay = relay.nom;
   }
-  
-  setCart= async () => {
+  removeProductFromCart = async (product: Product) => {
+    this.cart.products.find(p => p.id === product.id)!.quantity = 1;
+    this.cart.products = this.cart.products.filter(prod => prod.id !== product.id);
+    this.updateTotalPrice();
+    this.setCart();
+  };
+
+  decreaseProductFromCart(product: Product) {
+    const i = this.cart.products.findIndex(p => p.id === product.id); 
+    if (i > -1 && --this.cart.products[i].quantity <= 0) 
+      this.removeProductFromCart(product);
+    this.updateTotalPrice();
+    this.setCart();
+  }
+
+  updateTotalPrice() {
+    this.cart.totalPrice = this.cart.products.reduce((sum, prod) => sum + (prod.productPrice*prod.quantity), 0);
+  }
+
+  checkExistingProduct(product: Product) {
+    for (let produit of this.cart.products) {
+      if (product.id === produit.id) {
+        produit.quantity++;
+        return true;
+      }
+    }
+    return false;
+  }
+  // Gestion du local storage 
+  setCart = async () => {
     await Preferences.set({
       key: 'Panier',
       value: JSON.stringify(this.cart),
     });
   };
 
-  async getProductsFromJson(){
-    const  {value}  = await Preferences.get({ key: 'Panier' });
-    if(value != null)
-    {
-      this.cart = JSON.parse(value);
-    }
-  }
-
   checkCart = async () => {
     const { value } = await Preferences.get({ key: 'Panier' });
-    if(value != null){
+    if (value != null) {
       return true
     }
     return false
   };
 
+  async getProductsFromJson() {
+    const { value } = await Preferences.get({ key: 'Panier' });
+    if (value != null) {
+      this.cart = JSON.parse(value);
+    }
+  }
+
   removeCart = async () => {
     await Preferences.remove({ key: 'Panier' });
   };
-
-  removeProductFromCart = async(product: Product) => {
-    this.cart.products = this.cart.products.filter(prod => prod.id !== product.id);
-    this.updateTotalPrice();
-    await this.setCart();
-  };
-
-  updateTotalPrice() {
-    this.cart.totalPrice = this.cart.products.reduce((sum, prod) => sum + prod.productPrice,0);
-  }
 }
 
 export class Product {
