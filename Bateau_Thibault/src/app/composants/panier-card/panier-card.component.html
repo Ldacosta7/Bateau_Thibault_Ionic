@@ -14,7 +14,7 @@
 
   <ion-card>
     <ion-card-content id="cartItemsContainer" class="cart-items">
-      @if (cart.products.length === 0 ) {
+      @if (cart.products.length === 0) {
       <div class="empty-state">
         <div class="empty-state-icon">
           🛒
@@ -26,7 +26,7 @@
         <div class="cart-item">
           <div class="cart-item-header">
             <div class="cart-item-name">{{product.productName}} ({{product.icon}})</div>
-            <button class="cart-item-remove">Supprimer</button>
+            <button class="cart-item-remove" (click)="removeProductFromCart(product)">Supprimer</button>
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem;">
             <div style="color: #b8e6ff;">Quantité: {{product.quantity}}</div>
@@ -48,7 +48,7 @@
       </div>
     </div>
     <div class="cart-total">
-      <div class="cart-total-row"><span>Total:</span> <span id="cartTotal">0.00 €</span>
+      <div class="cart-total-row"><span>Total:</span><span id="cartTotal">{{cart.totalPrice}} €</span>
       </div>
     </div>
     <ion-buttons class="cta-buttons">

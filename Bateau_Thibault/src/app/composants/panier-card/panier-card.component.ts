@@ -11,6 +11,7 @@ import { Preferences } from '@capacitor/preferences';
 
 
 export class PanierCardComponent implements OnInit {
+
   relayPoints: Array<any> = [];
   actualRelay: any
   cart: Cart = { products: [], totalPrice: 0.0, pointRelay: '' };
@@ -43,6 +44,7 @@ export class PanierCardComponent implements OnInit {
 
 
   constructor(private modalCtrl: ModalController) {
+    this.getProductsFromJson();
     this.relayPoints = [
       { id: 1, name: "Point Relais Centre-Ville", address: "15 Rue du Port, 29200 Brest", selected: true },
       { id: 2, name: "Relais Maritime", address: "8 Avenue de la Mer, 29200 Brest", selected: false },
@@ -52,8 +54,7 @@ export class PanierCardComponent implements OnInit {
 
   ngOnInit() {
     if (this.product.productName != '') {
-      this.myProduct = this.product;
-      this.addItemToCart(this.myProduct);
+      this.addItemToCart(this.product);
     }
   }
 
@@ -63,15 +64,51 @@ export class PanierCardComponent implements OnInit {
 
   addItemToCart(product: Product) {
     this.cart.products.push(product);
-    console.log("MON PRODUIT");
-    console.log(this.cart.products);
+    this.cart.totalPrice += product.productPrice;
+    this.setCart();
   }
 
   selectRelay(relay: any) {
     this.relayPoints.forEach(i => i.id === relay.id && (i.selected = true));
     this.actualRelay = relay.nom;
   }
+  
+  setCart= async () => {
+    await Preferences.set({
+      key: 'Panier',
+      value: JSON.stringify(this.cart),
+    });
+  };
 
+  async getProductsFromJson(){
+    const  {value}  = await Preferences.get({ key: 'Panier' });
+    if(value != null)
+    {
+      this.cart = JSON.parse(value);
+    }
+  }
+
+  checkCart = async () => {
+    const { value } = await Preferences.get({ key: 'Panier' });
+    if(value != null){
+      return true
+    }
+    return false
+  };
+
+  removeCart = async () => {
+    await Preferences.remove({ key: 'Panier' });
+  };
+
+  removeProductFromCart = async(product: Product) => {
+    this.cart.products = this.cart.products.filter(prod => prod.id !== product.id);
+    this.updateTotalPrice();
+    await this.setCart();
+  };
+
+  updateTotalPrice() {
+    this.cart.totalPrice = this.cart.products.reduce((sum, prod) => sum + prod.productPrice,0);
+  }
 }
 
 export class Product {
@@ -110,5 +147,4 @@ export class Cart {
     this.totalPrice = _totalPrice;
     this.pointRelay = _pointRelay;
   }
-
 }
