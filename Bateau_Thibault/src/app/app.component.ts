@@ -12,30 +12,22 @@ import { PanierCardComponent } from './composants/panier-card/panier-card.compon
 export class AppComponent {
   cart : Array<any> = [];
   constructor(private router: Router, private modalCart: ModalController) {}
-
-    onGoToHome()
+onGoToHome()
   { this.router.navigate(['/home']) }
 
+
   onGoToBateaux()
-  { this.router.navigate(['/bateau']) }
-
-  onGoToProduits()
-  { this.router.navigate(['/produits']) }
-
-  onGoToRestaurants()
-  { this.router.navigate(['/restaurants']) }
-
-  onGoToRecettes()
-  { this.router.navigate(['/recettes']) }
-
-  onGoToContact()
-  { this.router.navigate(['/contact']) }
-
-  async openModal(){
-    const modal = await this.modalCart.create({
-      component : PanierCardComponent
-    });
-    modal.present();
-  }
+    { this.router.navigate(['/bateau']) }
   
+    onGoToProduits()
+    { this.router.navigate(['/produits']) }
+  
+    onGoToRestaurants()
+    { this.router.navigate(['/restaurants']) }
+  
+    onGoToRecettes()
+    { this.router.navigate(['/recettes']) }
+  
+    onGoToContact()
+    { this.router.navigate(['/contact']) }
 }

@@ -1,6 +1,44 @@
-<ion-content [fullscreen]="true">
+<ion-menu contentId="mainContent" style="margin-top: 12%;">
 
-  <div id="container" class="page">
+  <ion-content class="menu">
+    <br>
+    <ion-buttons class="cta-buttons">
+      <ion-button (click)="onGoToHome()" class="cta-btn primary" data-page="accueil" >Accueil</ion-button>
+      <ion-button (click)="onGoToBateaux()" class="cta-btn primary">Bateaux</ion-button>
+      <ion-button (click)="onGoToProduits()" class="cta-btn primary">Produits</ion-button>
+      <ion-button (click)="onGoToRestaurants()" class="cta-btn primary">Restaurants</ion-button>
+      <ion-button (click)="onGoToRecettes()" class="cta-btn primary ">Recettes</ion-button>
+      <ion-button (click)="onGoToContact()" class="cta-btn primary">Contact</ion-button>
+    </ion-buttons>
+  </ion-content> 
+  
+</ion-menu>
+
+<ion-header  id="nav">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <div class="logo-container">
+        <div class="logo-placeholder"><img src="/assets/img/logo.png" alt="logo"></div>
+        <span class="site-title">Bateau Thibault</span>
+      </div>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button class="cta-btn cart-icon" id="cartIcon" (click)="openModal()">🛒<span class="cart-count" id="cartCount">0</span></ion-button>
+      <ion-menu-button autoHide="false" class="hamburger-btn"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+
+
+
+<ion-content id="container" [fullscreen]="true">
+
+  <div id="mainContent" class="page">
     <section class="section">
       <h2 class="section-title">⚓ Nos Restaurants</h2>
       <ion-card class="cards-grid" id="boatsGrid">
